@@ -6,8 +6,7 @@ import java.util.Calendar;
 
 import org.junit.Test;
 
-import br.com.prova.transferencia.strategy.ContextTaxaTipoOperacao;
-import br.com.prova.transferencia.strategy.TaxaTipoOperacaoD;
+import br.com.prova.transferencia.strategy.impl.TaxaTipoOperacaoD;
 
 public class TaxaTipoOperacaoDTest {
 	@Test
@@ -15,8 +14,8 @@ public class TaxaTipoOperacaoDTest {
 		Calendar dataAgendamento = Calendar.getInstance();
 		dataAgendamento.add(Calendar.DAY_OF_MONTH, 29);		
 		
-		ContextTaxaTipoOperacao context = new ContextTaxaTipoOperacao(25000.00, dataAgendamento, new TaxaTipoOperacaoD());
-		double taxa = context.getResult();
+		TaxaTipoOperacao tipoOperacaoD = new TaxaTipoOperacaoD();		
+		double taxa = tipoOperacaoD.calcularTaxa(25000, dataAgendamento);	
 
 		assertEquals("Taxa Tipo Operacao D - Taxa A",752.00, taxa, 0);
 	}
@@ -26,8 +25,8 @@ public class TaxaTipoOperacaoDTest {
 		Calendar dataAgendamento = Calendar.getInstance();
 		dataAgendamento.add(Calendar.DAY_OF_MONTH, 29);		
 		
-		ContextTaxaTipoOperacao context = new ContextTaxaTipoOperacao(35000.00, dataAgendamento, new TaxaTipoOperacaoD());
-		double taxa = context.getResult();
+		TaxaTipoOperacao tipoOperacaoD = new TaxaTipoOperacaoD();		
+		double taxa = tipoOperacaoD.calcularTaxa(35000, dataAgendamento);	
 
 		assertEquals("Taxa Tipo Operacao D - Taxa B",10.00, taxa, 0);		
 	}
@@ -37,10 +36,9 @@ public class TaxaTipoOperacaoDTest {
 		Calendar dataAgendamento = Calendar.getInstance();
 		dataAgendamento.add(Calendar.DAY_OF_MONTH, 29);		
 		
-		ContextTaxaTipoOperacao context = new ContextTaxaTipoOperacao(126000.00, dataAgendamento, new TaxaTipoOperacaoD());
-		double taxa = context.getResult();
-
-		assertEquals("Taxa Tipo Operacao D - Taxa C",2646.00, taxa, 0);
-		
+		TaxaTipoOperacao tipoOperacaoD = new TaxaTipoOperacaoD();		
+		double taxa = tipoOperacaoD.calcularTaxa(126000.0, dataAgendamento);
+	
+		assertEquals("Taxa Tipo Operacao D - Taxa C",2646.00, taxa, 0);		
 	}	
 }

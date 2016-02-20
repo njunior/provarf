@@ -1,22 +1,51 @@
 package br.com.prova.transferencia.enums;
 
+import br.com.prova.transferencia.strategy.TaxaTipoOperacao;
+import br.com.prova.transferencia.strategy.impl.TaxaTipoOperacaoA;
+import br.com.prova.transferencia.strategy.impl.TaxaTipoOperacaoB;
+import br.com.prova.transferencia.strategy.impl.TaxaTipoOperacaoC;
+import br.com.prova.transferencia.strategy.impl.TaxaTipoOperacaoD;
+
 public enum TipoOperacao {
-	TIPO_A(0),
-	TIPO_B(1),
-	TIPO_C(3),
-	TIPO_D(4);
+	
+	TIPO_A("A"){		
+		@Override
+		public TaxaTipoOperacao taxaTipoOperacao(){
+			return new TaxaTipoOperacaoA();
+		}		
+	},
+	TIPO_B("B"){
+		@Override
+		public TaxaTipoOperacao taxaTipoOperacao(){
+			return new TaxaTipoOperacaoB();
+		}		
+	},
+	TIPO_C("C"){
+		@Override
+		public TaxaTipoOperacao taxaTipoOperacao(){
+			return new TaxaTipoOperacaoC();
+		}		
+	},
+	TIPO_D("D"){
+		@Override
+		public TaxaTipoOperacao taxaTipoOperacao(){
+			return new TaxaTipoOperacaoD();
+		}		
+	};
 
-	private Integer tipo;
-
-	TipoOperacao(Integer tipo){
-		this.setTipo(tipo);	 
+	private String codigo;
+	
+	public abstract TaxaTipoOperacao taxaTipoOperacao();
+	
+	TipoOperacao(String codigo){
+		this.setCodigo(codigo);
+	}
+	
+	public String getCodigo() {
+		return codigo;
 	}
 
-	public Integer getTipo() {
-		return tipo;
-	}
-
-	public void setTipo(Integer tipo) {
-		this.tipo = tipo;
+	public void setCodigo(String codigo) {
+		this.codigo = codigo;
 	}	
 }

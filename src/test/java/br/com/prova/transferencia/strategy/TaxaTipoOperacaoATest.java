@@ -1,22 +1,22 @@
 package br.com.prova.transferencia.strategy;
 
-import java.util.Calendar;
 import static org.junit.Assert.assertEquals;
+
+import java.util.Calendar;
+
 import org.junit.Test;
 
-import br.com.prova.transferencia.strategy.ContextTaxaTipoOperacao;
-import br.com.prova.transferencia.strategy.TaxaTipoOperacaoA;
+import br.com.prova.transferencia.strategy.impl.TaxaTipoOperacaoA;
 
 public class TaxaTipoOperacaoATest {
 	
 	@Test
 	public void deveriaCalcularTaxaTransferenciaTipoA(){
 		Calendar dataAgendamento = Calendar.getInstance();
+		TaxaTipoOperacao tipoOperacaoA = new TaxaTipoOperacaoA();
 		
-		ContextTaxaTipoOperacao context = new ContextTaxaTipoOperacao(100.0, dataAgendamento, new TaxaTipoOperacaoA());
-		double taxa = context.getResult();
+		double taxa = tipoOperacaoA.calcularTaxa(100.0, dataAgendamento);
 
-		assertEquals("Taxa Tipo Operacao A",5.0, taxa, 0.0);
-			
+		assertEquals("Taxa Tipo Operacao A",5.0, taxa, 0.0);	
 	}
 }
