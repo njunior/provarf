@@ -31,6 +31,7 @@ public class TransferenciaServiceTest {
 	@Test
 	public void deveAgendarTransferencia() {
 		Transferencia transferencia = new Transferencia();
+
 		transferencia.setContaDestino("12344-4");
 		transferencia.setContaOrigem("12345-5");
 		transferencia.setDataAgendamento(Calendar.getInstance());
@@ -46,9 +47,45 @@ public class TransferenciaServiceTest {
 
 	@Test
 	public void deveBuscarTransferenciasAgendadas() {
-		List<Transferencia> transferencias = new ArrayList<Transferencia>();
-		// transferencias.add(e)
-		when(transferenciaDAO.findAll()).thenReturn(transferencias);
-	}
+		when(transferenciaDAO.findAll()).thenReturn(criaListaDeTransferencias());
+		List<Transferencia> transferenciasAgendadas = transferenciaService.buscarTransferenciasAgendadas();
 
+		Assert.assertEquals(transferenciasAgendadas.size(), 5);
+	}
+	
+	@Test
+	public void deveBuscarTransferenciasAgendadasPorConta() {
+		when(transferenciaDAO.findByTransferenciasAgendadasPorConta("12344-5")).thenReturn(criaListaDeTransferenciasPorContaOrigem());
+		List<Transferencia> transferenciasAgendadas = transferenciaService.buscarTransferenciasAgendadasPorConta("12344-5");
+
+		Assert.assertEquals(transferenciasAgendadas.size(), 3);
+	}
+	
+	public List<Transferencia> criaListaDeTransferencias() {
+		List<Transferencia> transferencias = new ArrayList<Transferencia>();
+		for(int i = 1;i < 6;i++){
+		    Transferencia transferencia = new Transferencia();
+			transferencia.setContaDestino("12344-"+ i);
+			transferencia.setContaOrigem("12345-" + (i+1));
+			transferencia.setDataAgendamento(Calendar.getInstance());
+			transferencia.setValor(12000.00);
+			transferencia.setTipoOperacao(TipoOperacao.TIPO_A);
+			transferencias.add(transferencia);
+		}
+		return transferencias;
+	}	
+	
+	public List<Transferencia> criaListaDeTransferenciasPorContaOrigem() {
+		List<Transferencia> transferencias = new ArrayList<Transferencia>();
+		for(int i = 1;i < 4;i++){
+		    Transferencia transferencia = new Transferencia();
+			transferencia.setContaOrigem("12344-5");
+			transferencia.setContaDestino("12345-" + (i+1));
+			transferencia.setDataAgendamento(Calendar.getInstance());
+			transferencia.setValor(15000.00);
+			transferencia.setTipoOperacao(TipoOperacao.TIPO_A);
+			transferencias.add(transferencia);
+		}
+		return transferencias;
+	}	
 }

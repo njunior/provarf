@@ -9,7 +9,7 @@ import br.com.prova.transferencia.service.TransferenciaService;
 import br.com.prova.transferencia.strategy.TaxaTipoOperacao;
 
 public class TransferenciaServiceImpl implements TransferenciaService{
-	//Será feito utilizando injeção de dependência
+	//Será utilizado Injeção de Dependência
 	TransferenciaDAO transferenciaDAO;
 	
 	public TransferenciaServiceImpl(TransferenciaDAO transferenciaDAO) {
