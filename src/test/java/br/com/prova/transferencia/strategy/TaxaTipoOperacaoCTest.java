@@ -11,7 +11,13 @@ import br.com.prova.transferencia.strategy.impl.TaxaTipoOperacaoC;
 public class TaxaTipoOperacaoCTest {
 	@Test
 	public void deveriaCalcularTaxaTransferenciaTipoCMaiorQueTrintaDias(){
-	
+		Calendar dataAgendamento = Calendar.getInstance();
+		dataAgendamento.add(Calendar.DAY_OF_MONTH, 40);		
+		
+		TaxaTipoOperacao tipoOperacaoC = new TaxaTipoOperacaoC();		
+		double taxa = tipoOperacaoC.calcularTaxa(110.0, dataAgendamento);
+				
+		assertEquals("Taxa Tipo Operacao C",1.32, taxa, 0.0);
 	}
 	
 	@Test
