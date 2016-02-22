@@ -71,7 +71,13 @@ public class TaxaTipoOperacaoCTest {
 	
 	@Test
 	public void deveriaAgendarTransferenciaTipoCAte5Dias(){
-		
+		Calendar dataAgendamento = Calendar.getInstance();
+		dataAgendamento.add(Calendar.DAY_OF_MONTH, 5);	
+	
+		TaxaTipoOperacao tipoOperacaoC = new TaxaTipoOperacaoC();		
+		double taxa = tipoOperacaoC.calcularTaxa(500.0, dataAgendamento);	
+
+		assertEquals("Taxa Tipo Operacao C",41.5, taxa, 0);				
 	}
 
 }
