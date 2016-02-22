@@ -25,11 +25,11 @@ public class TransferenciaServiceImpl implements TransferenciaService{
 	
 	public List<Transferencia> buscarTransferenciasAgendadas(){
 		return transferenciaDAO.findAll();
-	};
+	}
 	
 	public List<Transferencia> buscarTransferenciasAgendadasPorConta(String conta){
 		return transferenciaDAO.findByTransferenciasAgendadasPorConta(conta);
-	};	
+	}	
 	
 	private double calcularTaxa(double valor, Calendar dataAgendamento, TaxaTipoOperacao taxaTipoOperacao) {
 		return taxaTipoOperacao.calcularTaxa(valor, dataAgendamento);
